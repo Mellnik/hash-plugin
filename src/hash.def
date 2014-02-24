@@ -1,0 +1,8 @@
+LIBRARY "hash"
+EXPORTS
+	Supports
+	Load
+	Unload
+	AmxLoad
+	AmxUnload
+	ProcessTick
