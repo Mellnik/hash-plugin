@@ -37,6 +37,7 @@ namespace Utility
 	void sha256(std::string input, std::string &output);
 	void sha384(std::string input, std::string &output);
 	void sha512(std::string input, std::string &output);
+	void sha3(std::string input, std::string &output);
 	void whirlpool(std::string input, std::string &output);
 	void ripemd160(std::string input, std::string &output);
 	void ripemd256(std::string input, std::string &output);

@@ -60,6 +60,7 @@ AMX_NATIVE_INFO hash_natives[] =
 	{"sha256", Native::sha256},
 	{"sha384", Native::sha384},
 	{"sha512", Native::sha512},
+	{"sha3", Native::sha3},
 	{"whirlpool", Native::whirlpool},
 	{"ripemd160", Native::ripemd160},
 	{"ripemd256", Native::ripemd256},

@@ -27,6 +27,7 @@
 #define SHA256_LENGTH 64
 #define SHA384_LENGTH 96
 #define SHA512_LENGTH 128
+#define SHA3_LENGTH 128
 #define WHIRLPOOL_LENGTH 128
 #define RIPEMD160_LENGTH 40
 #define RIPEMD256_LENGTH 64
@@ -36,6 +37,7 @@
 native sha256(const key[], hash[], len = sizeof(hash));
 native sha384(const key[], hash[], len = sizeof(hash)); 
 native sha512(const key[], hash[], len = sizeof(hash));
+native sha3(const key[], hash[], len = sizeof(hash));
 native whirlpool(const key[], hash[], len = sizeof(hash));
 native ripemd160(const key[], hash[], len = sizeof(hash));
 native ripemd256(const key[], hash[], len = sizeof(hash));

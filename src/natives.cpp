@@ -234,6 +234,22 @@ cell AMX_NATIVE_CALL Native::sha512(AMX *amx, cell *params)
 	return 1;
 }
 
+cell AMX_NATIVE_CALL Native::sha3(AMX *amx, cell *params)
+{
+	PARAM_CHECK(3, "sha3");
+	
+	char *str = NULL;
+	amx_StrParam(amx, params[1], str);
+
+	std::string hash;
+	Utility::sha3(str, hash);
+
+	cell *amx_Addr = NULL;
+	amx_GetAddr(amx, params[2], &amx_Addr);
+	amx_SetString(amx_Addr, hash.c_str(), 0, 0, params[3]);
+	return 1;
+}
+
 cell AMX_NATIVE_CALL Native::whirlpool(AMX *amx, cell *params)
 {
 	PARAM_CHECK(3, "whirlpool");

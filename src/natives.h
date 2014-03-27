@@ -27,6 +27,7 @@ namespace Native
 	cell AMX_NATIVE_CALL sha256(AMX *amx, cell *params);
 	cell AMX_NATIVE_CALL sha384(AMX *amx, cell *params);
 	cell AMX_NATIVE_CALL sha512(AMX *amx, cell *params);
+	cell AMX_NATIVE_CALL sha3(AMX *amx, cell *params);
 	cell AMX_NATIVE_CALL whirlpool(AMX *amx, cell *params);
 	cell AMX_NATIVE_CALL ripemd160(AMX *amx, cell *params);
 	cell AMX_NATIVE_CALL ripemd256(AMX *amx, cell *params);

@@ -19,6 +19,7 @@
 #include <cryptopp/base64.h>
 #include <cryptopp/hex.h>
 #include <cryptopp/sha.h>
+#include <cryptopp/sha3.h>
 #include <cryptopp/osrng.h>
 #include <cryptopp/ripemd.h>
 #include <cryptopp/whrlpool.h>
@@ -64,6 +65,12 @@ void Utility::sha512(std::string input, std::string &output)
 {
 	CryptoPP::SHA512 h_sha512;
 	CryptoPP::StringSource(input, true, new CryptoPP::HashFilter(h_sha512, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
+}
+
+void Utility::sha3(std::string input, std::string &output)
+{
+	CryptoPP::SHA3_512 h_sha3;
+	CryptoPP::StringSource(input, true, new CryptoPP::HashFilter(h_sha3, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
 }
 
 void Utility::whirlpool(std::string input, std::string &output)
