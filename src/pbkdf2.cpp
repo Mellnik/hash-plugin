@@ -77,6 +77,6 @@ void Pbkdf2::Work()
 		h_Equal = diff == 0;
 	}
 
-	boost::chrono::steady_clock::duration duraction = boost::chrono::steady_clock::now() - start;
-	h_ExecTime = static_cast<unsigned>(boost::chrono::duration_cast<boost::chrono::milliseconds>(duraction).count());
+	boost::chrono::steady_clock::duration duration = boost::chrono::steady_clock::now() - start;
+	h_ExecTime = static_cast<unsigned>(boost::chrono::duration_cast<boost::chrono::milliseconds>(duration).count());
 }
