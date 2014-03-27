@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// Hash Plugin 0.0.1
+// Hash Plugin 0.0.2
  
 #if defined _hash_included
 	#endinput
