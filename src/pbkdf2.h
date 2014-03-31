@@ -19,15 +19,20 @@
 #ifndef _PBKDF2_H_
 #define _PBKDF2_H_
 
+
 #include <string>
 
+using std::string;
+
 #include "utility.h"
+
 
 enum E_PBKDF2_WORKER
 {
 	PBKDF2_GENERATE,
 	PBKDF2_VALIDATE
 };
+
 
 class Pbkdf2 
 {
@@ -41,13 +46,14 @@ public:
 	CallbackData *cData;
 	E_PBKDF2_WORKER h_Worker;
 
-	std::string h_Hash;
-	std::string h_Salt;
+	string h_Hash;
+	string h_Salt;
 	unsigned h_ExecTime;
 	bool h_Equal;
 private:
 	unsigned h_Iterations;
-	std::string h_Key;
+	string h_Key;
 };
+
 
 #endif

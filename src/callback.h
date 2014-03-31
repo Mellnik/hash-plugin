@@ -19,6 +19,7 @@
 #ifndef _CALLBACK_H_
 #define _CALLBACK_H_
 
+
 #include <queue>
 #include <stack>
 
@@ -28,25 +29,35 @@
 #include <boost/bind.hpp>
 #include <boost/lockfree/queue.hpp>
 
+using std::queue;
+using std::stack;
+
+using boost::variant;
+using boost::thread;
+using boost::atomic;
+using boost::bind;
+
 #include "pbkdf2.h"
 #include "main.h"
+#include "singleton.h"
 
-class Callback
+
+class Callback : public CSingleton<Callback>
 {
 public:
 	Callback();
-	~Callback();
+	~Callback() { }
 
 	void ProcessTick();
 	void ProcessTask();
-	void Parameters(std::stack< boost::variant<cell, std::string> > &CallbackParameters, const char *format, AMX *amx, cell *params, const unsigned pcount);
+	void Parameters(stack< boost::variant<cell, string> > &CallbackParameters, const char *format, AMX *amx, cell *params, const unsigned pcount);
 
 	void QueueWorker(Pbkdf2 *pbkdf);
 	void QueueResult(Pbkdf2 *pbkdf2);
 
 	void Worker(Pbkdf2 *pbkdf2);
 
-	std::queue<int>::size_type UnprocessedWorkerCount();
+	queue<int>::size_type UnprocessedWorkerCount();
 
 	Pbkdf2 *GetActiveResult()
 	{
@@ -58,7 +69,7 @@ public:
 		ThreadLimit = threads;
 	}
 private:
-	std::queue<Pbkdf2 *> pbkdf2_worker;
+	queue<Pbkdf2 *> pbkdf2_worker;
 	boost::lockfree::queue< Pbkdf2 *, boost::lockfree::fixed_sized<true>, boost::lockfree::capacity<4096> > pbkdf2_result;
 
 	Pbkdf2 *ActiveResult;
@@ -67,6 +78,5 @@ private:
 	boost::atomic<unsigned> WorkerThreads;
 };
 
-extern Callback *g_Callback;
 
 #endif

@@ -19,6 +19,7 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+
 #include <SDK/plugin.h>
 
 #define PLUGIN_VERSION "0.0.2"
@@ -32,6 +33,6 @@
 typedef void (*logprintf_t)(const char*, ...);
 
 extern logprintf_t logprintf;
-extern void *pAMXFunctions;
+
 
 #endif

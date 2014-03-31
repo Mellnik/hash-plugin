@@ -15,24 +15,25 @@
  */
 
 #include <boost/chrono.hpp>
-#include <cryptopp/hex.h>
-#include <cryptopp/osrng.h>
-#include <cryptopp/whrlpool.h>
-#include <cryptopp/pwdbased.h>
+#include "cryptopp/hex.h"
+#include "cryptopp/osrng.h"
+#include "cryptopp/whrlpool.h"
+#include "cryptopp/pwdbased.h"
 
 #include "pbkdf2.h"
+
 
 Pbkdf2::Pbkdf2(const char *key, unsigned iterations, CallbackData *cData) : 
 	h_Key(key), h_Iterations(iterations)
 {
-	this->cData = cData;
+	cData = cData;
 	h_Worker = PBKDF2_GENERATE;
 }
 
 Pbkdf2::Pbkdf2(const char *key, const char *hash, const char *salt, unsigned iterations, CallbackData *cData) : 
 	h_Key(key), h_Hash(hash), h_Salt(salt), h_Iterations(iterations)
 {
-	this->cData = cData;
+	cData = cData;
 	h_Worker = PBKDF2_VALIDATE;
 	h_Equal = false;
 }

@@ -19,35 +19,41 @@
 #ifndef _UTILITY_H_
 #define _UTILITY_H_
 
+
 #include <string>
 #include <stack>
-
 #include <boost/variant.hpp>
+
+using std::string;
+using std::stack;
+using boost::variant;
 
 #include "main.h"
 
+
 typedef struct
 {
-	std::string Name;
-	std::stack< boost::variant<cell, std::string> > Params;
+	string Name;
+	stack< variant<cell, string> > Params;
 } CallbackData;
 
 namespace Utility
 {
-	void sha256(std::string input, std::string &output);
-	void sha384(std::string input, std::string &output);
-	void sha512(std::string input, std::string &output);
-	void sha3(std::string input, std::string &output);
-	void whirlpool(std::string input, std::string &output);
-	void ripemd160(std::string input, std::string &output);
-	void ripemd256(std::string input, std::string &output);
-	void ripemd320(std::string input, std::string &output);
-	void base64_encode(std::string input, std::string &output);
-	void base64_decode(std::string input, std::string &output);
-	void hex_encode(std::string input, std::string &output);
-	void hex_decode(std::string input, std::string &output);
+	void sha256(string input, string &output);
+	void sha384(string input, string &output);
+	void sha512(string input, string &output);
+	void sha3(string input, string &output);
+	void whirlpool(string input, string &output);
+	void ripemd160(string input, string &output);
+	void ripemd256(string input, string &output);
+	void ripemd320(string input, string &output);
+	void base64_encode(string input, string &output);
+	void base64_decode(string input, string &output);
+	void hex_encode(string input, string &output);
+	void hex_decode(string input, string &output);
 
-	void random_string(std::string &output, unsigned length);
+	void random_string(string &output, unsigned length);
 };
+
 
 #endif

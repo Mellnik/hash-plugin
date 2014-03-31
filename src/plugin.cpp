@@ -16,36 +16,25 @@
 
 #include "plugin.h"
 
-Plugin *g_Plugin = NULL;
-
-Plugin::Plugin()
-{
-	logprintf("[HASH] Plugin successfully loaded "PLUGIN_VERSION" (Compiled on "__DATE__", "__TIME__").");
-}
-
-Plugin::~Plugin()
-{
-	logprintf("[HASH] Plugin unloaded.");
-}
 
 void Plugin::AddAmx(AMX *amx)
 {
-	this->amx_List.push_back(amx);
+	amx_List.push_back(amx);
 }
 
 void Plugin::EraseAmx(AMX *amx)
 {
-	for(std::list<AMX *>::iterator i = this->amx_List.begin(); i != this->amx_List.end(); ++i) 
+	for(list<AMX *>::iterator i = amx_List.begin(); i != amx_List.end(); ++i) 
 	{
 		if(*i == amx) 
 		{
-			this->amx_List.erase(i);
+			amx_List.erase(i);
 			break;
 		}
 	}
 }
 
-std::list<AMX *> &Plugin::GetAmxList()
+list<AMX *> &Plugin::GetAmxList()
 {
-	return this->amx_List;
+	return amx_List;
 }

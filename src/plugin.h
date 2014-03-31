@@ -19,24 +19,28 @@
 #ifndef _PLUGIN_H_
 #define _PLUGIN_H_
 
+
 #include <list>
 
-#include "main.h"
+using std::list;
 
-class Plugin
+#include "main.h"
+#include "singleton.h"
+
+
+class Plugin : public CSingleton<Plugin>
 {
 public:
-	Plugin();
-	~Plugin();
+	Plugin() { }
+	~Plugin() { }
 
 	void EraseAmx(AMX *amx);
 	void AddAmx(AMX *amx);
-	std::list<AMX *> &GetAmxList();
+	list<AMX *> &GetAmxList();
 
 private:
-	std::list<AMX *> amx_List;
+	list<AMX *> amx_List;
 };
 
-extern Plugin *g_Plugin;
 
 #endif
