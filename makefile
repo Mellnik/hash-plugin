@@ -16,6 +16,7 @@ hash:
 	
 cryptolib:
 	$(MAKE) -C $(CRYPTOPP_SRC_DIR) static
+	mkdir -p lib
 	cp $(CRYPTOPP_SRC_DIR)/libcryptopp.a ./lib
 	
 clean:
