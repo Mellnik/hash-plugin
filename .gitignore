@@ -1,0 +1,7 @@
+*.sdf
+*.opensdf
+*.suo
+*.user
+[Dd]ebug/
+[Rr]elease/
+obj/
