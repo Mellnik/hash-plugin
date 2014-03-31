@@ -29,75 +29,75 @@
 
 #include "utility.h"
 
-void Utility::base64_encode(std::string input, std::string &output)
+void Utility::base64_encode(string input, string &output)
 {
 	CryptoPP::StringSource(input, true, new CryptoPP::Base64Encoder(new CryptoPP::StringSink(output), false));
 }
 
-void Utility::base64_decode(std::string input, std::string &output)
+void Utility::base64_decode(string input, string &output)
 {
 	CryptoPP::StringSource(input, true, new CryptoPP::Base64Decoder(new CryptoPP::StringSink(output)));
 }
 
-void Utility::hex_encode(std::string input, std::string &output)
+void Utility::hex_encode(string input, string &output)
 {
 	CryptoPP::StringSource(input, true, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output)));
 }
 
-void Utility::hex_decode(std::string input, std::string &output)
+void Utility::hex_decode(string input, string &output)
 {
 	CryptoPP::StringSource(input, true, new CryptoPP::HexDecoder(new CryptoPP::StringSink(output)));
 }
 
-void Utility::sha256(std::string input, std::string &output)
+void Utility::sha256(string input, string &output)
 {
 	CryptoPP::SHA256 h_sha256;
 	CryptoPP::StringSource(input, true, new CryptoPP::HashFilter(h_sha256, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
 }
 
-void Utility::sha384(std::string input, std::string &output)
+void Utility::sha384(string input, string &output)
 {
 	CryptoPP::SHA384 h_sha384;
 	CryptoPP::StringSource(input, true, new CryptoPP::HashFilter(h_sha384, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
 }
 
-void Utility::sha512(std::string input, std::string &output)
+void Utility::sha512(string input, string &output)
 {
 	CryptoPP::SHA512 h_sha512;
 	CryptoPP::StringSource(input, true, new CryptoPP::HashFilter(h_sha512, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
 }
 
-void Utility::sha3(std::string input, std::string &output)
+void Utility::sha3(string input, string &output)
 {
 	CryptoPP::SHA3_512 h_sha3;
 	CryptoPP::StringSource(input, true, new CryptoPP::HashFilter(h_sha3, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
 }
 
-void Utility::whirlpool(std::string input, std::string &output)
+void Utility::whirlpool(string input, string &output)
 {
 	CryptoPP::Whirlpool h_Whirlpool;
 	CryptoPP::StringSource(input, true, new CryptoPP::HashFilter(h_Whirlpool, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
 }
 
-void Utility::ripemd160(std::string input, std::string &output)
+void Utility::ripemd160(string input, string &output)
 {
 	CryptoPP::RIPEMD160 h_ripemd160;
 	CryptoPP::StringSource(input, true, new CryptoPP::HashFilter(h_ripemd160, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
 }
 
-void Utility::ripemd256(std::string input, std::string &output)
+void Utility::ripemd256(string input, string &output)
 {
 	CryptoPP::RIPEMD256 h_ripemd256;
 	CryptoPP::StringSource(input, true, new CryptoPP::HashFilter(h_ripemd256, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
 }
 
-void Utility::ripemd320(std::string input, std::string &output)
+void Utility::ripemd320(string input, string &output)
 {
 	CryptoPP::RIPEMD320 h_ripemd320;
 	CryptoPP::StringSource(input, true, new CryptoPP::HashFilter(h_ripemd320, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
 }
 
-void Utility::random_string(std::string &random, unsigned length)
+void Utility::random_string(string &random, unsigned length)
 {
     CryptoPP::AutoSeededRandomPool RNG;
     CryptoPP::Integer rand_num(RNG, 32);

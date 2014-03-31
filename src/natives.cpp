@@ -193,7 +193,7 @@ cell AMX_NATIVE_CALL Native::sha256(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string hash;
+	string hash;
 	Utility::sha256(str, hash);
 
 	cell *amx_Addr = NULL;
@@ -209,7 +209,7 @@ cell AMX_NATIVE_CALL Native::sha384(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string hash;
+	string hash;
 	Utility::sha384(str, hash);
 
 	cell *amx_Addr = NULL;
@@ -225,7 +225,7 @@ cell AMX_NATIVE_CALL Native::sha512(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string hash;
+	string hash;
 	Utility::sha512(str, hash);
 
 	cell *amx_Addr = NULL;
@@ -241,7 +241,7 @@ cell AMX_NATIVE_CALL Native::sha3(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string hash;
+	string hash;
 	Utility::sha3(str, hash);
 
 	cell *amx_Addr = NULL;
@@ -257,7 +257,7 @@ cell AMX_NATIVE_CALL Native::whirlpool(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string hash;
+	string hash;
 	Utility::whirlpool(str, hash);
 
 	cell *amx_Addr = NULL;
@@ -273,7 +273,7 @@ cell AMX_NATIVE_CALL Native::ripemd160(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string hash;
+	string hash;
 	Utility::ripemd160(str, hash);
 
 	cell *amx_Addr = NULL;
@@ -289,7 +289,7 @@ cell AMX_NATIVE_CALL Native::ripemd256(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string hash;
+	string hash;
 	Utility::ripemd256(str, hash);
 
 	cell *amx_Addr = NULL;
@@ -305,7 +305,7 @@ cell AMX_NATIVE_CALL Native::ripemd320(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string hash;
+	string hash;
 	Utility::ripemd320(str, hash);
 
 	cell *amx_Addr = NULL;
@@ -321,7 +321,7 @@ cell AMX_NATIVE_CALL Native::base64_encode(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string base64;
+	string base64;
 	Utility::base64_encode(str, base64);
 
 	cell *amx_Addr = NULL;
@@ -337,7 +337,7 @@ cell AMX_NATIVE_CALL Native::base64_decode(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string decoded;
+	string decoded;
 	Utility::base64_decode(str, decoded);
 
 	cell *amx_Addr = NULL;
@@ -353,7 +353,7 @@ cell AMX_NATIVE_CALL Native::hex_encode(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string hex;
+	string hex;
 	Utility::hex_encode(str, hex);
 
 	cell *amx_Addr = NULL;
@@ -369,7 +369,7 @@ cell AMX_NATIVE_CALL Native::hex_decode(AMX *amx, cell *params)
 	char *str = NULL;
 	amx_StrParam(amx, params[1], str);
 
-	std::string decoded;
+	string decoded;
 	Utility::hex_decode(str, decoded);
 
 	cell *amx_Addr = NULL;
@@ -404,7 +404,7 @@ cell AMX_NATIVE_CALL Native::random_string(AMX *amx, cell *params)
 		return 0;
 	}
 
-	std::string random;
+	string random;
 	Utility::random_string(random, (unsigned)params[1]);
 
 	cell *amx_Addr = NULL;
@@ -429,7 +429,7 @@ cell AMX_NATIVE_CALL Native::md5sum(AMX *amx, cell *params)
 		return 0;
 	}
 
-	std::string sum;
+	string sum;
 	CryptoPP::Weak::MD5 h_md5;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_md5, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
 
@@ -455,7 +455,7 @@ cell AMX_NATIVE_CALL Native::sha1sum(AMX *amx, cell *params)
 		return 0;
 	}
 
-	std::string sum;
+	string sum;
 	CryptoPP::SHA1 h_sha1;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_sha1, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
 
@@ -481,7 +481,7 @@ cell AMX_NATIVE_CALL Native::sha256sum(AMX *amx, cell *params)
 		return 0;
 	}
 
-	std::string sum;
+	string sum;
 	CryptoPP::SHA256 h_sha256;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_sha256, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
 
@@ -507,7 +507,7 @@ cell AMX_NATIVE_CALL Native::sha384sum(AMX *amx, cell *params)
 		return 0;
 	}
 
-	std::string sum;
+	string sum;
 	CryptoPP::SHA384 h_sha384;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_sha384, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
 
@@ -533,7 +533,7 @@ cell AMX_NATIVE_CALL Native::sha512sum(AMX *amx, cell *params)
 		return 0;
 	}
 
-	std::string sum;
+	string sum;
 	CryptoPP::SHA512 h_sha512;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_sha512, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
 
@@ -559,7 +559,7 @@ cell AMX_NATIVE_CALL Native::wpsum(AMX *amx, cell *params)
 		return 0;
 	}
 
-	std::string sum;
+	string sum;
 	CryptoPP::Whirlpool h_wp;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_wp, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
 

@@ -35,7 +35,7 @@ void Plugin::AddAmx(AMX *amx)
 
 void Plugin::EraseAmx(AMX *amx)
 {
-	for(std::list<AMX *>::iterator i = amx_List.begin(); i != amx_List.end(); ++i) 
+	for(list<AMX *>::iterator i = amx_List.begin(); i != amx_List.end(); ++i) 
 	{
 		if(*i == amx) 
 		{
@@ -45,7 +45,7 @@ void Plugin::EraseAmx(AMX *amx)
 	}
 }
 
-std::list<AMX *> &Plugin::GetAmxList()
+list<AMX *> &Plugin::GetAmxList()
 {
 	return amx_List;
 }

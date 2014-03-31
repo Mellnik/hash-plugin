@@ -19,9 +19,13 @@
 #ifndef _PLUGIN_H_
 #define _PLUGIN_H_
 
+
 #include <list>
 
+using std::list;
+
 #include "main.h"
+
 
 class Plugin
 {
@@ -31,12 +35,13 @@ public:
 
 	void EraseAmx(AMX *amx);
 	void AddAmx(AMX *amx);
-	std::list<AMX *> &GetAmxList();
+	list<AMX *> &GetAmxList();
 
 private:
-	std::list<AMX *> amx_List;
+	list<AMX *> amx_List;
 };
 
 extern Plugin *g_Plugin;
+
 
 #endif

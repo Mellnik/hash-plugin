@@ -21,7 +21,10 @@
 #include "natives.h"
 #include "main.h"
 
+
 logprintf_t logprintf;
+extern void *pAMXFunctions;
+
 
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 {

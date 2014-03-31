@@ -21,7 +21,7 @@ Callback *g_Callback = NULL;
 
 Callback::Callback()
 {
-	ThreadLimit = boost::thread::hardware_concurrency() - 1 < 1 ? 3 : boost::thread::hardware_concurrency() - 1;
+	ThreadLimit = thread::hardware_concurrency() - 1 < 1 ? 3 : thread::hardware_concurrency() - 1;
 	WorkerThreads = 0;
 }
 
@@ -36,7 +36,7 @@ void Callback::ProcessTick()
 
 	while(pbkdf2_result.pop(Queue))
 	{
-		for(std::list<AMX *>::iterator i = g_Plugin->GetAmxList().begin(); i != g_Plugin->GetAmxList().end(); ++i)
+		for(list<AMX *>::iterator i = g_Plugin->GetAmxList().begin(); i != g_Plugin->GetAmxList().end(); ++i)
 		{
 			int amx_Idx;
 
@@ -46,7 +46,7 @@ void Callback::ProcessTick()
 
 				while(!(Queue->cData->Params.empty()))
 				{
-					boost::variant<cell, std::string> val(boost::move(Queue->cData->Params.top()));
+					variant<cell, string> val(boost::move(Queue->cData->Params.top()));
 
 					if(val.type() == typeid(cell))
 					{
@@ -55,11 +55,10 @@ void Callback::ProcessTick()
 					else
 					{
 						cell tmp;
-						amx_PushString(*i, &tmp, NULL, boost::get<std::string>(val).c_str(), 0, 0);
+						amx_PushString(*i, &tmp, NULL, boost::get<string>(val).c_str(), 0, 0);
 
-						if(amx_Addr < 0) {
+						if(amx_Addr < 0) 
 							amx_Addr = tmp;
-						}
 					}
 
 					Queue->cData->Params.pop();
@@ -69,9 +68,8 @@ void Callback::ProcessTick()
 
 				cell amx_Ret;
 				amx_Exec(*i, &amx_Ret, amx_Idx);
-				if(amx_Addr >= 0) {
+				if(amx_Addr >= 0) 
 					amx_Release(*i, amx_Addr);
-				}
 
 				ActiveResult = NULL;
 				break;
@@ -90,7 +88,7 @@ void Callback::ProcessTask()
 		if(WorkerThreads < ThreadLimit) {
 			WorkerThreads++;
 
-			boost::thread(boost::bind(&Callback::Worker, this, pbkdf2_worker.front()));
+			thread(bind(&Callback::Worker, this, pbkdf2_worker.front()));
 
 			pbkdf2_worker.pop();
 		}
@@ -100,7 +98,7 @@ void Callback::ProcessTask()
 	}
 }
 
-void Callback::Parameters(std::stack< boost::variant<cell, std::string> > &CallbackParameters, const char *format, AMX *amx, cell *params, const unsigned pcount)
+void Callback::Parameters(stack< variant<cell, string> > &CallbackParameters, const char *format, AMX *amx, cell *params, const unsigned pcount)
 {
 	cell *amx_Ptr = NULL;
 	char *str = NULL;
@@ -119,16 +117,16 @@ void Callback::Parameters(std::stack< boost::variant<cell, std::string> > &Callb
 		case 's':
 		case 'z':
 			amx_StrParam(amx, params[pcount + i + 1], str);
-			CallbackParameters.push(str == NULL ? std::string("") : std::string(str));
+			CallbackParameters.push(str == NULL ? string("") : string(str));
 			str = NULL;
 			break;
 		default:
-			CallbackParameters.push(std::string("NULL"));
+			CallbackParameters.push(string("NULL"));
 		}
 	}
 }
 
-std::queue<int>::size_type Callback::UnprocessedWorkerCount()
+queue<int>::size_type Callback::UnprocessedWorkerCount()
 {
 	return pbkdf2_worker.size();
 }
