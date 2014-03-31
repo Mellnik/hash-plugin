@@ -39,15 +39,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
-    <IncludePath>$(ProjectDir)..\include;C:\Libs\boost_1_55_0;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\lib\cryptopp;C:\Libs\boost_1_55_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>..\bin\$(Configuration)\</OutDir>
+    <IncludePath>$(ProjectDir)..\include;D:\boost_1_55_0;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\lib;D:\boost_1_55_0\lib32-msvc-11.0;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
-    <IncludePath>$(ProjectDir)..\include;C:\Libs\boost_1_55_0;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\lib\cryptopp;C:\Libs\boost_1_55_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>..\bin\$(Configuration)\</OutDir>
+    <IncludePath>$(ProjectDir)..\include;D:\boost_1_55_0;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\lib;D:\boost_1_55_0\lib32-msvc-11.0;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
