@@ -18,7 +18,6 @@
 
 #include <fstream>
 
-#include <boost/thread.hpp>
 #include "cryptopp/base64.h"
 #include "cryptopp/osrng.h"
 #include "cryptopp/integer.h"
