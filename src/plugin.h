@@ -25,13 +25,14 @@
 using std::list;
 
 #include "main.h"
+#include "singleton.h"
 
 
-class Plugin
+class Plugin : public CSingleton<Plugin>
 {
 public:
-	Plugin();
-	~Plugin();
+	Plugin() { }
+	~Plugin() { }
 
 	void EraseAmx(AMX *amx);
 	void AddAmx(AMX *amx);
@@ -40,8 +41,6 @@ public:
 private:
 	list<AMX *> amx_List;
 };
-
-extern Plugin *g_Plugin;
 
 
 #endif

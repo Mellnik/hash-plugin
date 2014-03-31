@@ -60,8 +60,8 @@ cell AMX_NATIVE_CALL Native::hash_generate(AMX *amx, cell *params)
 	CallbackData *cData = new CallbackData;
 	cData->Name = callback;
 
-	g_Callback->Parameters(cData->Params, format, amx, params, ParameterCount);
-	g_Callback->QueueWorker(new Pbkdf2(key, (unsigned)params[2], cData));
+	Callback::Get()->Parameters(cData->Params, format, amx, params, ParameterCount);
+	Callback::Get()->QueueWorker(new Pbkdf2(key, static_cast<unsigned int>(params[2]), cData));
 	return 1;
 }
 
@@ -69,17 +69,19 @@ cell AMX_NATIVE_CALL Native::hash_retrieve(AMX *amx, cell *params)
 {
 	PARAM_CHECK(4, "hash_retrieve");
 
-	if(g_Callback->GetActiveResult() != NULL) {
-		if(g_Callback->GetActiveResult()->h_Worker != PBKDF2_GENERATE) {
+	if(Callback::Get()->GetActiveResult() != NULL) 
+	{
+		if(Callback::Get()->GetActiveResult()->h_Worker != PBKDF2_GENERATE) 
+		{
 			logprintf("[HASH] Invalid function call for hash validation.");
 			return 0;
 		} else {
 			cell *amx_Addr = NULL;
 			amx_GetAddr(amx, params[1], &amx_Addr);
-			amx_SetString(amx_Addr, g_Callback->GetActiveResult()->h_Hash.c_str(), 0, 0, params[3]);
+			amx_SetString(amx_Addr, Callback::Get()->GetActiveResult()->h_Hash.c_str(), 0, 0, params[3]);
 
 			amx_GetAddr(amx, params[2], &amx_Addr);
-			amx_SetString(amx_Addr, g_Callback->GetActiveResult()->h_Salt.c_str(), 0, 0, params[4]);
+			amx_SetString(amx_Addr, Callback::Get()->GetActiveResult()->h_Salt.c_str(), 0, 0, params[4]);
 			return 1;
 		}
 	} else {
@@ -117,21 +119,23 @@ cell AMX_NATIVE_CALL Native::hash_validate(AMX *amx, cell *params)
 	CallbackData *cData = new CallbackData;
 	cData->Name = callback;
 
-	g_Callback->Parameters(cData->Params, format, amx, params, ParameterCount);
-	g_Callback->QueueWorker(new Pbkdf2(key, hash, salt, (unsigned)params[4], cData));
+	Callback::Get()->Parameters(cData->Params, format, amx, params, ParameterCount);
+	Callback::Get()->QueueWorker(new Pbkdf2(key, hash, salt, static_cast<unsigned int>(params[4]), cData));
 	return 1;
 }
 
 cell AMX_NATIVE_CALL Native::hash_is_equal(AMX *amx, cell *params)
 {
-	if(g_Callback->GetActiveResult() != NULL) {
-		if(g_Callback->GetActiveResult()->h_Worker != PBKDF2_VALIDATE) {
+	if(Callback::Get()->GetActiveResult() != NULL) 
+	{
+		if(Callback::Get()->GetActiveResult()->h_Worker != PBKDF2_VALIDATE) 
+		{
 			logprintf("[HASH] Invalid function call for hash generation.");
 			return 0;
 		} else {
-			return static_cast<cell>(g_Callback->GetActiveResult()->h_Equal);
 		}
 	} else {
+			return static_cast<cell>(Callback::Get()->GetActiveResult()->h_Equal);
 		logprintf("[HASH] No active result.");
 		return 0;
 	}
@@ -139,14 +143,17 @@ cell AMX_NATIVE_CALL Native::hash_is_equal(AMX *amx, cell *params)
 
 cell AMX_NATIVE_CALL Native::hash_unprocessed(AMX *amx, cell *params)
 {
-	return static_cast<cell>(g_Callback->UnprocessedWorkerCount());
+	return static_cast<cell>(Callback::Get()->UnprocessedWorkerCount());
 }
 
 cell AMX_NATIVE_CALL Native::hash_exec_time(AMX *amx, cell *params)
 {
-	if(g_Callback->GetActiveResult() != NULL) {
-		return static_cast<cell>(g_Callback->GetActiveResult()->h_ExecTime);
-	} else {
+	if(Callback::Get()->GetActiveResult() != NULL)
+	{
+		return static_cast<cell>(Callback::Get()->GetActiveResult()->h_ExecTime);
+	}
+	else
+	{
 		logprintf("[HASH] No active result.");
 		return 0;
 	}
@@ -160,7 +167,7 @@ cell AMX_NATIVE_CALL Native::hash_thread_limit(AMX *amx, cell *params)
 		logprintf("[HASH] Invalid thread limit. Expected at least 1.");
 		return 0;
 	}
-	g_Callback->SetThreadLimit((unsigned)params[1]);
+	Callback::Get()->SetThreadLimit(static_cast<unsigned int>(params[1]));
 	return 1;
 }
 

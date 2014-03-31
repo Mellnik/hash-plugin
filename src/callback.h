@@ -39,13 +39,14 @@ using boost::bind;
 
 #include "pbkdf2.h"
 #include "main.h"
+#include "singleton.h"
 
 
-class Callback
+class Callback : public CSingleton<Callback>
 {
 public:
 	Callback();
-	~Callback();
+	~Callback() { }
 
 	void ProcessTick();
 	void ProcessTask();
@@ -76,8 +77,6 @@ private:
 	boost::atomic<unsigned> ThreadLimit;
 	boost::atomic<unsigned> WorkerThreads;
 };
-
-extern Callback *g_Callback;
 
 
 #endif

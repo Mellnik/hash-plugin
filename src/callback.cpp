@@ -17,17 +17,11 @@
 #include "callback.h"
 #include "plugin.h"
 
-Callback *g_Callback = NULL;
 
 Callback::Callback()
 {
 	ThreadLimit = thread::hardware_concurrency() - 1 < 1 ? 3 : thread::hardware_concurrency() - 1;
 	WorkerThreads = 0;
-}
-
-Callback::~Callback()
-{
-
 }
 
 void Callback::ProcessTick()
@@ -36,7 +30,8 @@ void Callback::ProcessTick()
 
 	while(pbkdf2_result.pop(Queue))
 	{
-		for(list<AMX *>::iterator i = g_Plugin->GetAmxList().begin(); i != g_Plugin->GetAmxList().end(); ++i)
+		list<AMX *> &AmxList = Plugin::Get()->GetAmxList();
+		for (list<AMX *>::iterator i = AmxList.begin(); i != AmxList.end(); ++i)
 		{
 			int amx_Idx;
 

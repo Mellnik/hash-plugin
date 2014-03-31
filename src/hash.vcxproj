@@ -101,6 +101,7 @@
     <ClInclude Include="natives.h" />
     <ClInclude Include="pbkdf2.h" />
     <ClInclude Include="plugin.h" />
+    <ClInclude Include="singleton.h" />
     <ClInclude Include="utility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

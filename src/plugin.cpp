@@ -16,17 +16,6 @@
 
 #include "plugin.h"
 
-Plugin *g_Plugin = NULL;
-
-Plugin::Plugin()
-{
-	logprintf("[HASH] Plugin successfully loaded "PLUGIN_VERSION" (Compiled on "__DATE__", "__TIME__").");
-}
-
-Plugin::~Plugin()
-{
-	logprintf("[HASH] Plugin unloaded.");
-}
 
 void Plugin::AddAmx(AMX *amx)
 {

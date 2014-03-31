@@ -27,6 +27,7 @@
     <ClInclude Include="pbkdf2.h" />
     <ClInclude Include="plugin.h" />
     <ClInclude Include="utility.h" />
+    <ClInclude Include="singleton.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="hash.def">

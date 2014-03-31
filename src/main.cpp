@@ -36,21 +36,21 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 	pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
 	logprintf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
 
-	g_Plugin = new Plugin();
-	g_Callback = new Callback();
+	logprintf("[HASH] Plugin successfully loaded "PLUGIN_VERSION" (Compiled on "__DATE__", "__TIME__").");
 	return true;
 }
 
 PLUGIN_EXPORT void PLUGIN_CALL Unload()
 {
-	delete g_Callback;
-	delete g_Plugin;
+	Callback::Destroy();
+	Plugin::Destroy();
+	logprintf("[HASH] Plugin unloaded.");
 }
 
 PLUGIN_EXPORT void PLUGIN_CALL ProcessTick()
 {
-	g_Callback->ProcessTick();
-	g_Callback->ProcessTask();
+	Callback::Get()->ProcessTick();
+	Callback::Get()->ProcessTask();
 }
 
 AMX_NATIVE_INFO hash_natives[] =
@@ -100,12 +100,12 @@ AMX_NATIVE_INFO hash_natives[] =
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx)
 {
-	g_Plugin->AddAmx(amx);
+	Plugin::Get()->AddAmx(amx);
 	return amx_Register(amx, hash_natives, -1);
 }
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx)
 {
-	g_Plugin->EraseAmx(amx);
+	Plugin::Get()->EraseAmx(amx);
 	return AMX_ERR_NONE;
 }
