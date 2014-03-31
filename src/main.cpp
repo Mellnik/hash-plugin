@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-#if defined(WIN32)
-#pragma comment(lib, "cryptlib")
-#endif
-
 #include <cstdlib>
 
 #include "plugin.h"
