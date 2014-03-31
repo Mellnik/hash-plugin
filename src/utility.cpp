@@ -29,6 +29,7 @@
 
 #include "utility.h"
 
+
 void Utility::base64_encode(string input, string &output)
 {
 	CryptoPP::StringSource(input, true, new CryptoPP::Base64Encoder(new CryptoPP::StringSink(output), false));
@@ -102,26 +103,26 @@ void Utility::random_string(string &random, unsigned length)
     CryptoPP::AutoSeededRandomPool RNG;
     CryptoPP::Integer rand_num(RNG, 32);
 
-	for(unsigned i = 0; i < length; i++) 
+	for(unsigned i = 0; i < length; ++i)
 	{
 		unsigned num;
 
-        if(!rand_num.IsConvertableToLong()) {
+        if(!rand_num.IsConvertableToLong())
             num = std::numeric_limits<unsigned>::max() + static_cast<unsigned>(rand_num.AbsoluteValue().ConvertToLong());
-        } else {
+        else
             num = static_cast<unsigned>(rand_num.AbsoluteValue().ConvertToLong());
-        }
+        
 
         num = num % 122;
-        if(48 > num) {
+        if(48 > num)
 			num += 48;
-		}
-        if(57 < num && 65 > num) {
+		
+        if(57 < num && 65 > num)
             num += 7;
-		}
-        if(90 < num && 97 > num) {
+		
+        if(90 < num && 97 > num)
             num += 6;
-		}
+		
         random += static_cast<char>(num);
         rand_num.Randomize(RNG, 32);
 	}

@@ -22,6 +22,7 @@
 
 #include "pbkdf2.h"
 
+
 Pbkdf2::Pbkdf2(const char *key, unsigned iterations, CallbackData *cData) : 
 	h_Key(key), h_Iterations(iterations)
 {

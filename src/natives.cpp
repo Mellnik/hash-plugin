@@ -37,12 +37,14 @@ cell AMX_NATIVE_CALL Native::hash_generate(AMX *amx, cell *params)
 {
 	static const unsigned ParameterCount = 4;
 
-	if(params[0] < ParameterCount * sizeof(cell)) {
+	if(params[0] < ParameterCount * sizeof(cell)) 
+	{
 		logprintf("[HASH] Invalid parameter count in hash_generate.");
 		return 0;
 	}
 
-	if(params[2] < 1000) {
+	if(params[2] < 1000) 
+	{
 		logprintf("[HASH] Invalid iteration count. Expected at least 1000.");
 		return 0;
 	}
@@ -52,7 +54,8 @@ cell AMX_NATIVE_CALL Native::hash_generate(AMX *amx, cell *params)
 	amx_StrParam(amx, params[3], callback);
 	amx_StrParam(amx, params[4], format);
 
-	if(key == NULL || callback == NULL || format == NULL) {
+	if(key == NULL || callback == NULL || format == NULL) 
+	{
 		logprintf("[HASH] Failed to get hash_generate parameter.");
 		return 0;
 	}
@@ -75,7 +78,9 @@ cell AMX_NATIVE_CALL Native::hash_retrieve(AMX *amx, cell *params)
 		{
 			logprintf("[HASH] Invalid function call for hash validation.");
 			return 0;
-		} else {
+		} 
+		else 
+		{
 			cell *amx_Addr = NULL;
 			amx_GetAddr(amx, params[1], &amx_Addr);
 			amx_SetString(amx_Addr, Callback::Get()->GetActiveResult()->h_Hash.c_str(), 0, 0, params[3]);
@@ -84,7 +89,9 @@ cell AMX_NATIVE_CALL Native::hash_retrieve(AMX *amx, cell *params)
 			amx_SetString(amx_Addr, Callback::Get()->GetActiveResult()->h_Salt.c_str(), 0, 0, params[4]);
 			return 1;
 		}
-	} else {
+	} 
+	else 
+	{
 		logprintf("[HASH] No active result.");
 		return 0;
 	}
@@ -94,12 +101,14 @@ cell AMX_NATIVE_CALL Native::hash_validate(AMX *amx, cell *params)
 {
 	static const unsigned ParameterCount = 6;
 
-	if(params[0] < ParameterCount * sizeof(cell)) {
+	if(params[0] < ParameterCount * sizeof(cell)) 
+	{
 		logprintf("[HASH] Invalid parameter count in hash_validate.");
 		return 0;
 	}
 
-	if(params[4] < 1000) {
+	if(params[4] < 1000) 
+	{
 		logprintf("[HASH] Invalid iteration count. Expected at least 1000.");
 		return 0;
 	}
@@ -111,7 +120,8 @@ cell AMX_NATIVE_CALL Native::hash_validate(AMX *amx, cell *params)
 	amx_StrParam(amx, params[5], callback);
 	amx_StrParam(amx, params[6], format);
 
-	if(key == NULL || callback == NULL || format == NULL || hash == NULL || salt == NULL) {
+	if(key == NULL || callback == NULL || format == NULL || hash == NULL || salt == NULL) 
+	{
 		logprintf("[HASH] Failed to get hash_generate parameter.");
 		return 0;
 	}
@@ -132,10 +142,14 @@ cell AMX_NATIVE_CALL Native::hash_is_equal(AMX *amx, cell *params)
 		{
 			logprintf("[HASH] Invalid function call for hash generation.");
 			return 0;
-		} else {
 		}
-	} else {
+		else
+		{
 			return static_cast<cell>(Callback::Get()->GetActiveResult()->h_Equal);
+		}
+	}
+	else
+	{
 		logprintf("[HASH] No active result.");
 		return 0;
 	}
@@ -163,7 +177,8 @@ cell AMX_NATIVE_CALL Native::hash_thread_limit(AMX *amx, cell *params)
 {
 	PARAM_CHECK(1, "hash_thread_limit");
 
-	if(params[1] < 1) {
+	if(params[1] < 1) 
+	{
 		logprintf("[HASH] Invalid thread limit. Expected at least 1.");
 		return 0;
 	}
@@ -179,16 +194,16 @@ cell AMX_NATIVE_CALL Native::slow_equals(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], a);
 	amx_StrParam(amx, params[2], b);
 
-	if(a == NULL || b == NULL) {
+	if(a == NULL || b == NULL) 
+	{
 		logprintf("[HASH] Failed to get slow_equals parameter.");
 		return 0;
 	}
 
 	unsigned diff = strlen(a) ^ strlen(b);
 	for(unsigned i = 0; i < strlen(a) && i < strlen(b); ++i)
-	{
 		diff |= a[i] ^ b[i];
-	}
+	
 	return static_cast<cell>(diff == 0);
 }
 
@@ -388,7 +403,8 @@ cell AMX_NATIVE_CALL Native::random_int(AMX *amx, cell *params)
 {
 	PARAM_CHECK(2, "random_int");
 
-	if(params[2] < params[1]) { // Prevent crash
+	if(params[2] < params[1]) // Prevent crash
+	{
 		logprintf("[HASH] Invalid input in random_int.");
 		return 0;
 	}
@@ -405,7 +421,8 @@ cell AMX_NATIVE_CALL Native::random_string(AMX *amx, cell *params)
 {
 	PARAM_CHECK(3, "random_string");
 
-	if(params[1] < 1) {
+	if(params[1] < 1) 
+	{
 		logprintf("[HASH] Invalid length specified.");
 		return 0;
 	}
@@ -426,11 +443,11 @@ cell AMX_NATIVE_CALL Native::md5sum(AMX *amx, cell *params)
 	char *file = NULL;
 	amx_StrParam(amx, params[1], file);
 
-	if(file == NULL) {
+	if(file == NULL)
 		return 0;
-	}
 
-	if(!(std::ifstream(file))) {
+	if(!(std::ifstream(file))) 
+	{
 		logprintf("[HASH] File does not exist.");
 		return 0;
 	}
@@ -452,11 +469,11 @@ cell AMX_NATIVE_CALL Native::sha1sum(AMX *amx, cell *params)
 	char *file = NULL;
 	amx_StrParam(amx, params[1], file);
 
-	if(file == NULL) {
+	if(file == NULL)
 		return 0;
-	}
 
-	if(!(std::ifstream(file))) {
+	if(!(std::ifstream(file))) 
+	{
 		logprintf("[HASH] File does not exist.");
 		return 0;
 	}
@@ -478,11 +495,11 @@ cell AMX_NATIVE_CALL Native::sha256sum(AMX *amx, cell *params)
 	char *file = NULL;
 	amx_StrParam(amx, params[1], file);
 
-	if(file == NULL) {
+	if(file == NULL)
 		return 0;
-	}
 
-	if(!(std::ifstream(file))) {
+	if(!(std::ifstream(file))) 
+	{
 		logprintf("[HASH] File does not exist.");
 		return 0;
 	}
@@ -504,11 +521,11 @@ cell AMX_NATIVE_CALL Native::sha384sum(AMX *amx, cell *params)
 	char *file = NULL;
 	amx_StrParam(amx, params[1], file);
 
-	if(file == NULL) {
+	if(file == NULL)
 		return 0;
-	}
 
-	if(!(std::ifstream(file))) {
+	if(!(std::ifstream(file))) 
+	{
 		logprintf("[HASH] File does not exist.");
 		return 0;
 	}
@@ -530,11 +547,11 @@ cell AMX_NATIVE_CALL Native::sha512sum(AMX *amx, cell *params)
 	char *file = NULL;
 	amx_StrParam(amx, params[1], file);
 
-	if(file == NULL) {
+	if(file == NULL)
 		return 0;
-	}
 
-	if(!(std::ifstream(file))) {
+	if(!(std::ifstream(file))) 
+	{
 		logprintf("[HASH] File does not exist.");
 		return 0;
 	}
@@ -556,11 +573,11 @@ cell AMX_NATIVE_CALL Native::wpsum(AMX *amx, cell *params)
 	char *file = NULL;
 	amx_StrParam(amx, params[1], file);
 
-	if(file == NULL) {
+	if(file == NULL)
 		return 0;
-	}
 
-	if(!(std::ifstream(file))) {
+	if(!(std::ifstream(file))) 
+	{
 		logprintf("[HASH] File does not exist.");
 		return 0;
 	}

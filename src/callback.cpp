@@ -80,16 +80,17 @@ void Callback::ProcessTask()
 {
 	while(!(pbkdf2_worker.empty()))
 	{
-		if(WorkerThreads < ThreadLimit) {
+		if(WorkerThreads < ThreadLimit) 
+		{
 			WorkerThreads++;
 
 			thread(bind(&Callback::Worker, this, pbkdf2_worker.front()));
 
 			pbkdf2_worker.pop();
 		}
-		else {
+		else 
 			break;
-		}
+		
 	}
 }
 
