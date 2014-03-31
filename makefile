@@ -11,6 +11,7 @@ hash:
 	$(GCC) $(COMPILER_FLAGS) ./include/SDK/amx/*.c
 	$(GPP) $(COMPILER_FLAGS) ./include/SDK/*.cpp
 	$(GPP) $(COMPILER_FLAGS) ./src/*.cpp
+	mkdir -p bin
 	$(GPP) -m32 -O2 -fshort-wchar -shared -o $(OUTPUT) *.o $(LIBRARIES)
 	
 cryptolib:
