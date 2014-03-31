@@ -21,8 +21,8 @@ Callback *g_Callback = NULL;
 
 Callback::Callback()
 {
-	this->ThreadLimit = boost::thread::hardware_concurrency() - 1 < 1 ? 3 : boost::thread::hardware_concurrency() - 1;
-	this->WorkerThreads = 0;
+	ThreadLimit = boost::thread::hardware_concurrency() - 1 < 1 ? 3 : boost::thread::hardware_concurrency() - 1;
+	WorkerThreads = 0;
 }
 
 Callback::~Callback()
