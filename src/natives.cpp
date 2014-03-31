@@ -428,7 +428,7 @@ cell AMX_NATIVE_CALL Native::random_string(AMX *amx, cell *params)
 	}
 
 	string random;
-	Utility::random_string(random, (unsigned)params[1]);
+	Utility::random_string(random, static_cast<unsigned int>(params[1]));
 
 	cell *amx_Addr = NULL;
 	amx_GetAddr(amx, params[2], &amx_Addr);
