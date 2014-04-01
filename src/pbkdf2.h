@@ -37,8 +37,8 @@ enum E_PBKDF2_WORKER
 class Pbkdf2 
 {
 public:
-	Pbkdf2(const char *key, unsigned iterations, CallbackData *cData);
-	Pbkdf2(const char *key, const char *hash, const char *salt, unsigned iterations, CallbackData *cData);
+	Pbkdf2(const char *key, unsigned iterations, CallbackData *callback);
+	Pbkdf2(const char *key, const char *hash, const char *salt, unsigned iterations, CallbackData *callback);
 	~Pbkdf2();
 
 	void Work();

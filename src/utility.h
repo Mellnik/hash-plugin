@@ -51,7 +51,6 @@ namespace Utility
 	void base64_decode(string input, string &output);
 	void hex_encode(string input, string &output);
 	void hex_decode(string input, string &output);
-
 	void random_string(string &output, unsigned length);
 };
 

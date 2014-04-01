@@ -50,7 +50,7 @@ public:
 
 	void ProcessTick();
 	void ProcessTask();
-	void Parameters(stack< boost::variant<cell, string> > &CallbackParameters, const char *format, AMX *amx, cell *params, const unsigned pcount);
+	void Parameters(stack< variant<cell, string> > &CallbackParameters, const char *format, AMX *amx, cell *params, const unsigned pcount);
 
 	void QueueWorker(Pbkdf2 *pbkdf);
 	void QueueResult(Pbkdf2 *pbkdf2);
@@ -74,8 +74,8 @@ private:
 
 	Pbkdf2 *ActiveResult;
 
-	boost::atomic<unsigned> ThreadLimit;
-	boost::atomic<unsigned> WorkerThreads;
+	atomic<unsigned> ThreadLimit;
+	atomic<unsigned> WorkerThreads;
 };
 
 

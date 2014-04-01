@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define CRYPTOPP_ENABLE_NAMESPACE_WEAK 1 // forMD5 checksum
+#define CRYPTOPP_ENABLE_NAMESPACE_WEAK 1 // for MD5 checksum
 
 #include <fstream>
 
@@ -64,7 +64,7 @@ cell AMX_NATIVE_CALL Native::hash_generate(AMX *amx, cell *params)
 	cData->Name = callback;
 
 	Callback::Get()->Parameters(cData->Params, format, amx, params, ParameterCount);
-	Callback::Get()->QueueWorker(new Pbkdf2(key, static_cast<unsigned int>(params[2]), cData));
+	Callback::Get()->QueueWorker(new Pbkdf2(key, static_cast<unsigned>(params[2]), cData));
 	return 1;
 }
 
@@ -182,6 +182,7 @@ cell AMX_NATIVE_CALL Native::hash_thread_limit(AMX *amx, cell *params)
 		logprintf("[HASH] Invalid thread limit. Expected at least 1.");
 		return 0;
 	}
+	
 	Callback::Get()->SetThreadLimit(static_cast<unsigned int>(params[1]));
 	return 1;
 }
@@ -428,7 +429,7 @@ cell AMX_NATIVE_CALL Native::random_string(AMX *amx, cell *params)
 	}
 
 	string random;
-	Utility::random_string(random, static_cast<unsigned int>(params[1]));
+	Utility::random_string(random, static_cast<unsigned>(params[1]));
 
 	cell *amx_Addr = NULL;
 	amx_GetAddr(amx, params[2], &amx_Addr);

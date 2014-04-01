@@ -1,4 +1,4 @@
 Hash Plugin for SA-MP
 =====================
 
-Please visit the SA-MP forums for the documentation.
+Full documentation as well as installation & compiling notes can be found on the SA-MP forums.

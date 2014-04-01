@@ -18,10 +18,10 @@
 #include "plugin.h"
 
 
-Callback::Callback()
+Callback::Callback() :
+	WorkerThreads(0)
 {
 	ThreadLimit = thread::hardware_concurrency() - 1 < 1 ? 3 : thread::hardware_concurrency() - 1;
-	WorkerThreads = 0;
 }
 
 void Callback::ProcessTick()
