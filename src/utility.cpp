@@ -127,3 +127,10 @@ void Utility::random_string(string &random, unsigned length)
         rand_num.Randomize(RNG, 32);
 	}
 }
+
+void Utility::amx_SetCString(AMX *amx, cell param, const char *str, int len)
+{
+	cell *amx_Addr = NULL;
+	amx_GetAddr(amx, param, &amx_Addr);
+	amx_SetString(amx_Addr, str, 0, 0, len > 0 ? len : strlen(str) + 1);
+}

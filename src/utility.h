@@ -52,6 +52,7 @@ namespace Utility
 	void hex_encode(string input, string &output);
 	void hex_decode(string input, string &output);
 	void random_string(string &output, unsigned length);
+	void amx_SetCString(AMX *amx, cell param, const char *str, int len);
 };
 
 

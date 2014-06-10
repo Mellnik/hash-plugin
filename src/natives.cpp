@@ -81,12 +81,8 @@ cell AMX_NATIVE_CALL Native::hash_retrieve(AMX *amx, cell *params)
 		} 
 		else 
 		{
-			cell *amx_Addr = NULL;
-			amx_GetAddr(amx, params[1], &amx_Addr);
-			amx_SetString(amx_Addr, Callback::Get()->GetActiveResult()->h_Hash.c_str(), 0, 0, params[3]);
-
-			amx_GetAddr(amx, params[2], &amx_Addr);
-			amx_SetString(amx_Addr, Callback::Get()->GetActiveResult()->h_Salt.c_str(), 0, 0, params[4]);
+			Utility::amx_SetCString(amx, params[1], Callback::Get()->GetActiveResult()->h_Hash.c_str(), params[3]);
+			Utility::amx_SetCString(amx, params[2], Callback::Get()->GetActiveResult()->h_Salt.c_str(), params[4]);
 			return 1;
 		}
 	} 
@@ -217,10 +213,7 @@ cell AMX_NATIVE_CALL Native::sha256(AMX *amx, cell *params)
 
 	string hash;
 	Utility::sha256(str, hash);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, hash.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
 
@@ -233,10 +226,7 @@ cell AMX_NATIVE_CALL Native::sha384(AMX *amx, cell *params)
 
 	string hash;
 	Utility::sha384(str, hash);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, hash.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
 
@@ -249,10 +239,7 @@ cell AMX_NATIVE_CALL Native::sha512(AMX *amx, cell *params)
 
 	string hash;
 	Utility::sha512(str, hash);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, hash.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
 
@@ -265,10 +252,7 @@ cell AMX_NATIVE_CALL Native::sha3(AMX *amx, cell *params)
 
 	string hash;
 	Utility::sha3(str, hash);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, hash.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
 
@@ -281,10 +265,7 @@ cell AMX_NATIVE_CALL Native::whirlpool(AMX *amx, cell *params)
 
 	string hash;
 	Utility::whirlpool(str, hash);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, hash.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
 
@@ -297,10 +278,7 @@ cell AMX_NATIVE_CALL Native::ripemd160(AMX *amx, cell *params)
 
 	string hash;
 	Utility::ripemd160(str, hash);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, hash.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
 
@@ -313,10 +291,7 @@ cell AMX_NATIVE_CALL Native::ripemd256(AMX *amx, cell *params)
 
 	string hash;
 	Utility::ripemd256(str, hash);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, hash.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
 
@@ -329,10 +304,7 @@ cell AMX_NATIVE_CALL Native::ripemd320(AMX *amx, cell *params)
 
 	string hash;
 	Utility::ripemd320(str, hash);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, hash.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
 
@@ -345,10 +317,7 @@ cell AMX_NATIVE_CALL Native::base64_encode(AMX *amx, cell *params)
 
 	string base64;
 	Utility::base64_encode(str, base64);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, base64.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], base64.c_str(), params[3]);
 	return 1;
 }
 
@@ -361,10 +330,7 @@ cell AMX_NATIVE_CALL Native::base64_decode(AMX *amx, cell *params)
 
 	string decoded;
 	Utility::base64_decode(str, decoded);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, decoded.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], decoded.c_str(), params[3]);
 	return 1;
 }
 
@@ -377,10 +343,7 @@ cell AMX_NATIVE_CALL Native::hex_encode(AMX *amx, cell *params)
 
 	string hex;
 	Utility::hex_encode(str, hex);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, hex.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], hex.c_str(), params[3]);
 	return 1;
 }
 
@@ -393,10 +356,7 @@ cell AMX_NATIVE_CALL Native::hex_decode(AMX *amx, cell *params)
 
 	string decoded;
 	Utility::hex_decode(str, decoded);
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, decoded.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], decoded.c_str(), params[3]);
 	return 1;
 }
 
@@ -430,10 +390,7 @@ cell AMX_NATIVE_CALL Native::random_string(AMX *amx, cell *params)
 
 	string random;
 	Utility::random_string(random, static_cast<unsigned>(params[1]));
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, random.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], random.c_str(), params[3]);
 	return 1;
 }
 
@@ -456,10 +413,7 @@ cell AMX_NATIVE_CALL Native::md5sum(AMX *amx, cell *params)
 	string sum;
 	CryptoPP::Weak::MD5 h_md5;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_md5, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, sum.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], sum.c_str(), params[3]);
 	return 1;
 }
 
@@ -482,10 +436,7 @@ cell AMX_NATIVE_CALL Native::sha1sum(AMX *amx, cell *params)
 	string sum;
 	CryptoPP::SHA1 h_sha1;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_sha1, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, sum.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], sum.c_str(), params[3]);
 	return 1;
 }
 
@@ -508,10 +459,7 @@ cell AMX_NATIVE_CALL Native::sha256sum(AMX *amx, cell *params)
 	string sum;
 	CryptoPP::SHA256 h_sha256;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_sha256, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, sum.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], sum.c_str(), params[3]);
 	return 1;
 }
 
@@ -534,10 +482,7 @@ cell AMX_NATIVE_CALL Native::sha384sum(AMX *amx, cell *params)
 	string sum;
 	CryptoPP::SHA384 h_sha384;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_sha384, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, sum.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], sum.c_str(), params[3]);
 	return 1;
 }
 
@@ -560,10 +505,7 @@ cell AMX_NATIVE_CALL Native::sha512sum(AMX *amx, cell *params)
 	string sum;
 	CryptoPP::SHA512 h_sha512;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_sha512, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, sum.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], sum.c_str(), params[3]);
 	return 1;
 }
 
@@ -586,9 +528,6 @@ cell AMX_NATIVE_CALL Native::wpsum(AMX *amx, cell *params)
 	string sum;
 	CryptoPP::Whirlpool h_wp;
 	CryptoPP::FileSource(file, true, new CryptoPP::HashFilter(h_wp, new CryptoPP::HexEncoder(new CryptoPP::StringSink(sum))));
-
-	cell *amx_Addr = NULL;
-	amx_GetAddr(amx, params[2], &amx_Addr);
-	amx_SetString(amx_Addr, sum.c_str(), 0, 0, params[3]);
+	Utility::amx_SetCString(amx, params[2], sum.c_str(), params[3]);
 	return 1;
 }

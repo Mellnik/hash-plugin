@@ -90,7 +90,6 @@ void Callback::ProcessTask()
 		}
 		else 
 			break;
-		
 	}
 }
 
