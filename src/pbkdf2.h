@@ -19,20 +19,17 @@
 #ifndef _PBKDF2_H_
 #define _PBKDF2_H_
 
-
 #include <string>
 
 using std::string;
 
 #include "utility.h"
 
-
 enum E_PBKDF2_WORKER
 {
 	PBKDF2_GENERATE,
 	PBKDF2_VALIDATE
 };
-
 
 class Pbkdf2 
 {
@@ -54,6 +51,5 @@ private:
 	unsigned h_Iterations;
 	string h_Key;
 };
-
 
 #endif

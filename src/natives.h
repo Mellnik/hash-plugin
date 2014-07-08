@@ -19,9 +19,7 @@
 #ifndef _NATIVES_H_
 #define _NATIVES_H_
 
-
 #include "main.h"
-
 
 namespace Native
 {
@@ -65,6 +63,5 @@ namespace Native
 	// Length-constant comparison
 	cell AMX_NATIVE_CALL slow_equals(AMX *amx, cell *params);
 };
-
 
 #endif

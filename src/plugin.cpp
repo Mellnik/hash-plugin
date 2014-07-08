@@ -16,7 +16,6 @@
 
 #include "plugin.h"
 
-
 void Plugin::AddAmx(AMX *amx)
 {
 	amx_List.push_back(amx);

@@ -19,18 +19,17 @@
 #ifndef _CALLBACK_H_
 #define _CALLBACK_H_
 
-
 #include <queue>
 #include <stack>
+
+using std::queue;
+using std::stack;
 
 #include <boost/variant.hpp>
 #include <boost/thread.hpp>
 #include <boost/atomic.hpp>
 #include <boost/bind.hpp>
 #include <boost/lockfree/queue.hpp>
-
-using std::queue;
-using std::stack;
 
 using boost::variant;
 using boost::thread;
@@ -40,7 +39,6 @@ using boost::bind;
 #include "pbkdf2.h"
 #include "main.h"
 #include "singleton.h"
-
 
 class Callback : public CSingleton<Callback>
 {

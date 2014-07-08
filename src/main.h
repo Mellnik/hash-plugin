@@ -19,10 +19,9 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
-
 #include <SDK/plugin.h>
 
-#define PLUGIN_VERSION "0.0.3"
+#define PLUGIN_VERSION "0.0.4"
 #define PARAM_CHECK(c, n) \
 	if(params[0] != (c * 4)) \
 	{ \
@@ -31,8 +30,6 @@
 	} \
 
 typedef void (*logprintf_t)(const char*, ...);
-
 extern logprintf_t logprintf;
-
 
 #endif
