@@ -364,7 +364,7 @@ cell AMX_NATIVE_CALL Native::random_int(AMX *amx, cell *params)
 {
 	PARAM_CHECK(2, "random_int");
 
-	if(params[2] < params[1]) // Prevent crash
+	if(params[2] < params[1] || params[2] == params[1]) // Prevent crash
 	{
 		logprintf("[HASH] Invalid input in random_int.");
 		return 0;
