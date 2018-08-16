@@ -22,11 +22,11 @@
 
 #include <string>
 #include <stack>
-#include <boost/variant.hpp>
+#include <variant>
 
 using std::string;
 using std::stack;
-using boost::variant;
+using std::variant;
 
 #include "main.h"
 

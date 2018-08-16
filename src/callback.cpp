@@ -26,33 +26,35 @@ Callback::Callback() :
 
 void Callback::ProcessTick()
 {
+	lock_guard<mutex> lock(ResultMtx);
+
 	Pbkdf2 *Queue = NULL;
 
-	while(pbkdf2_result.pop(Queue))
+	while (!pbkdf2_result.empty())
 	{
+		Queue = pbkdf2_result.front();
+
 		list<AMX *> &AmxList = Plugin::Get()->GetAmxList();
 		for (list<AMX *>::iterator i = AmxList.begin(); i != AmxList.end(); ++i)
 		{
 			int amx_Idx;
 
-			if(amx_FindPublic(*i, Queue->cData->Name.c_str(), &amx_Idx) == AMX_ERR_NONE)
+			if (amx_FindPublic(*i, Queue->cData->Name.c_str(), &amx_Idx) == AMX_ERR_NONE)
 			{
 				cell amx_Addr = -1;
 
-				while(!(Queue->cData->Params.empty()))
+				while (!Queue->cData->Params.empty())
 				{
-					variant<cell, string> val(boost::move(Queue->cData->Params.top()));
+					variant<cell, string> Param(move(Queue->cData->Params.top()));
 
-					if(val.type() == typeid(cell))
-					{
-						amx_Push(*i, boost::get<cell>(val));
+					if (auto v = std::get_if<cell>(&Param)) {
+						amx_Push(*i, *v);
 					}
-					else
-					{
+					else if (auto v = std::get_if<string>(&Param)) {
 						cell tmp;
-						amx_PushString(*i, &tmp, NULL, boost::get<string>(val).c_str(), 0, 0);
+						amx_PushString(*i, &tmp, NULL, (*v).c_str(), 0, 0);
 
-						if(amx_Addr < 0) 
+						if (amx_Addr < 0)
 							amx_Addr = tmp;
 					}
 
@@ -78,9 +80,9 @@ void Callback::ProcessTick()
 
 void Callback::ProcessTask()
 {
-	while(!(pbkdf2_worker.empty()))
+	while (!pbkdf2_worker.empty())
 	{
-		if(WorkerThreads < ThreadLimit) 
+		if (WorkerThreads < ThreadLimit) 
 		{
 			WorkerThreads++;
 
@@ -88,8 +90,9 @@ void Callback::ProcessTask()
 
 			pbkdf2_worker.pop();
 		}
-		else 
+		else {
 			break;
+		}
 	}
 }
 
@@ -133,6 +136,8 @@ void Callback::QueueWorker(Pbkdf2 *pbkdf2)
 
 void Callback::QueueResult(Pbkdf2 *pbkdf2)
 {
+	lock_guard<mutex> lock(ResultMtx);
+
 	pbkdf2_result.push(pbkdf2);
 	WorkerThreads--;
 }

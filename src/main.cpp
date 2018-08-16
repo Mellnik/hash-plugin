@@ -34,7 +34,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 	pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
 	logprintf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
 
-	logprintf("[HASH] Plugin successfully loaded "PLUGIN_VERSION" (Compiled on "__DATE__", "__TIME__").");
+	logprintf("[HASH] Plugin successfully loaded version %s (Compiled on %s, %s).", PLUGIN_VERSION, __DATE__, __TIME__);
 	return true;
 }
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <boost/chrono.hpp>
+#include <chrono>
 #include "cryptopp/hex.h"
 #include "cryptopp/osrng.h"
 #include "cryptopp/whrlpool.h"
@@ -55,7 +55,7 @@ void Pbkdf2::Work()
 {
 	static const unsigned _PBKDF2_BYTE_ = 512 / 8;
 
-	boost::chrono::steady_clock::time_point start = boost::chrono::steady_clock::now();
+	std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 	
 	CryptoPP::SecByteBlock byte_Derived(_PBKDF2_BYTE_);
 	CryptoPP::PKCS5_PBKDF2_HMAC<CryptoPP::Whirlpool> pbkdf2;
@@ -86,6 +86,6 @@ void Pbkdf2::Work()
 		h_Equal = diff == 0;
 	}
 
-	boost::chrono::steady_clock::duration duration = boost::chrono::steady_clock::now() - start;
-	h_ExecTime = static_cast<unsigned>(boost::chrono::duration_cast<boost::chrono::milliseconds>(duration).count());
+	std::chrono::steady_clock::duration duration = std::chrono::steady_clock::now() - start;
+	h_ExecTime = static_cast<unsigned>(std::chrono::duration_cast<std::chrono::milliseconds>(duration).count());
 }

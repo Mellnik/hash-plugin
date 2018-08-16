@@ -25,16 +25,20 @@
 using std::queue;
 using std::stack;
 
-#include <boost/variant.hpp>
-#include <boost/thread.hpp>
-#include <boost/atomic.hpp>
-#include <boost/bind.hpp>
-#include <boost/lockfree/queue.hpp>
+#include <variant>
+#include <thread>
+#include <atomic>
+#include <algorithm>
+#include <mutex>
+#include <utility>
 
-using boost::variant;
-using boost::thread;
-using boost::atomic;
-using boost::bind;
+using std::variant;
+using std::thread;
+using std::atomic;
+using std::bind;
+using std::mutex;
+using std::lock_guard;
+using std::move;
 
 #include "pbkdf2.h"
 #include "main.h"
@@ -68,7 +72,9 @@ public:
 	}
 private:
 	queue<Pbkdf2 *> pbkdf2_worker;
-	boost::lockfree::queue< Pbkdf2 *, boost::lockfree::fixed_sized<true>, boost::lockfree::capacity<4096> > pbkdf2_result;
+
+	mutex ResultMtx;
+	queue<Pbkdf2 *> pbkdf2_result;
 
 	Pbkdf2 *ActiveResult;
 
