@@ -5,3 +5,11 @@
 [Dd]ebug/
 [Rr]elease/
 obj/
+*.VC.db
+*.VC.opendb
+*.VC.db-shm
+*.VC.db-wal
+*.ipch
+*.lib
+*.pdb
+*.idb
