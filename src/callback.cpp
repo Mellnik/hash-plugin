@@ -69,6 +69,7 @@ void Callback::ProcessTick()
 					amx_Release(*i, amx_Addr);
 
 				ActiveResult = NULL;
+
 				break;
 			}
 		}
@@ -86,7 +87,7 @@ void Callback::ProcessTask()
 		{
 			WorkerThreads++;
 
-			thread(bind(&Callback::Worker, this, pbkdf2_worker.front()));
+			thread(&Callback::Worker, this, pbkdf2_worker.front()).detach();
 
 			pbkdf2_worker.pop();
 		}

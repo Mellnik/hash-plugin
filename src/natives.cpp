@@ -72,25 +72,21 @@ cell AMX_NATIVE_CALL Native::hash_retrieve(AMX *amx, cell *params)
 {
 	PARAM_CHECK(4, "hash_retrieve");
 
-	if(Callback::Get()->GetActiveResult() != NULL) 
-	{
-		if(Callback::Get()->GetActiveResult()->h_Worker != PBKDF2_GENERATE) 
-		{
-			logprintf("[HASH] Invalid function call for hash validation.");
-			return 0;
-		} 
-		else 
-		{
-			Utility::amx_SetCString(amx, params[1], Callback::Get()->GetActiveResult()->h_Hash.c_str(), params[3]);
-			Utility::amx_SetCString(amx, params[2], Callback::Get()->GetActiveResult()->h_Salt.c_str(), params[4]);
-			return 1;
-		}
-	} 
-	else 
+	if (Callback::Get()->GetActiveResult() == NULL)
 	{
 		logprintf("[HASH] No active result.");
 		return 0;
 	}
+
+	if (Callback::Get()->GetActiveResult()->h_Worker != PBKDF2_GENERATE)
+	{
+		logprintf("[HASH] Invalid function call for hash validation.");
+		return 0;
+	}
+
+	//Utility::amx_SetCString(amx, params[1], Callback::Get()->GetActiveResult()->h_Hash.c_str(), params[3]);
+	//Utility::amx_SetCString(amx, params[2], Callback::Get()->GetActiveResult()->h_Salt.c_str(), params[4]);
+	return 1;
 }
 
 cell AMX_NATIVE_CALL Native::hash_validate(AMX *amx, cell *params)
