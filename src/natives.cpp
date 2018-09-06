@@ -208,7 +208,7 @@ cell AMX_NATIVE_CALL Native::sha256(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string hash;
-	Utility::sha256(str, hash);
+	Utility::sha256(str ? str : "", hash);
 	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
@@ -221,7 +221,7 @@ cell AMX_NATIVE_CALL Native::sha384(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string hash;
-	Utility::sha384(str, hash);
+	Utility::sha384(str ? str : "", hash);
 	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
@@ -234,7 +234,7 @@ cell AMX_NATIVE_CALL Native::sha512(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string hash;
-	Utility::sha512(str, hash);
+	Utility::sha512(str ? str : "", hash);
 	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
@@ -247,7 +247,7 @@ cell AMX_NATIVE_CALL Native::sha3(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string hash;
-	Utility::sha3(str, hash);
+	Utility::sha3(str ? str : "", hash);
 	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
@@ -260,7 +260,7 @@ cell AMX_NATIVE_CALL Native::whirlpool(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string hash;
-	Utility::whirlpool(str, hash);
+	Utility::whirlpool(str ? str : "", hash);
 	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
@@ -273,7 +273,7 @@ cell AMX_NATIVE_CALL Native::ripemd160(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string hash;
-	Utility::ripemd160(str, hash);
+	Utility::ripemd160(str ? str : "", hash);
 	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
@@ -286,7 +286,7 @@ cell AMX_NATIVE_CALL Native::ripemd256(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string hash;
-	Utility::ripemd256(str, hash);
+	Utility::ripemd256(str ? str : "", hash);
 	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
@@ -299,7 +299,7 @@ cell AMX_NATIVE_CALL Native::ripemd320(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string hash;
-	Utility::ripemd320(str, hash);
+	Utility::ripemd320(str ? str : "", hash);
 	Utility::amx_SetCString(amx, params[2], hash.c_str(), params[3]);
 	return 1;
 }
@@ -312,7 +312,7 @@ cell AMX_NATIVE_CALL Native::base64_encode(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string base64;
-	Utility::base64_encode(str, base64);
+	Utility::base64_encode(str ? str : "", base64);
 	Utility::amx_SetCString(amx, params[2], base64.c_str(), params[3]);
 	return 1;
 }
@@ -325,7 +325,7 @@ cell AMX_NATIVE_CALL Native::base64_decode(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string decoded;
-	Utility::base64_decode(str, decoded);
+	Utility::base64_decode(str ? str : "", decoded);
 	Utility::amx_SetCString(amx, params[2], decoded.c_str(), params[3]);
 	return 1;
 }
@@ -338,7 +338,7 @@ cell AMX_NATIVE_CALL Native::hex_encode(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string hex;
-	Utility::hex_encode(str, hex);
+	Utility::hex_encode(str ? str : "", hex);
 	Utility::amx_SetCString(amx, params[2], hex.c_str(), params[3]);
 	return 1;
 }
@@ -351,7 +351,7 @@ cell AMX_NATIVE_CALL Native::hex_decode(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], str);
 
 	string decoded;
-	Utility::hex_decode(str, decoded);
+	Utility::hex_decode(str ? str : "", decoded);
 	Utility::amx_SetCString(amx, params[2], decoded.c_str(), params[3]);
 	return 1;
 }
@@ -398,7 +398,10 @@ cell AMX_NATIVE_CALL Native::md5sum(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], file);
 
 	if(file == NULL)
+	{
+		logprintf("[HASH] Failed to get md5sum parameter.");
 		return 0;
+	}
 
 	if(!(std::ifstream(file))) 
 	{
@@ -421,7 +424,10 @@ cell AMX_NATIVE_CALL Native::sha1sum(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], file);
 
 	if(file == NULL)
+	{
+		logprintf("[HASH] Failed to get sha1sum parameter.");
 		return 0;
+	}
 
 	if(!(std::ifstream(file))) 
 	{
@@ -444,7 +450,10 @@ cell AMX_NATIVE_CALL Native::sha256sum(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], file);
 
 	if(file == NULL)
+	{
+		logprintf("[HASH] Failed to get sha256sum parameter.");
 		return 0;
+	}
 
 	if(!(std::ifstream(file))) 
 	{
@@ -467,7 +476,10 @@ cell AMX_NATIVE_CALL Native::sha384sum(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], file);
 
 	if(file == NULL)
+	{
+		logprintf("[HASH] Failed to get sha384sum parameter.");
 		return 0;
+	}
 
 	if(!(std::ifstream(file))) 
 	{
@@ -490,7 +502,10 @@ cell AMX_NATIVE_CALL Native::sha512sum(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], file);
 
 	if(file == NULL)
+	{
+		logprintf("[HASH] Failed to get sha512sum parameter.");
 		return 0;
+	}
 
 	if(!(std::ifstream(file))) 
 	{
@@ -513,7 +528,10 @@ cell AMX_NATIVE_CALL Native::wpsum(AMX *amx, cell *params)
 	amx_StrParam(amx, params[1], file);
 
 	if(file == NULL)
+	{
+		logprintf("[HASH] Failed to get wpsum parameter.");
 		return 0;
+	}
 
 	if(!(std::ifstream(file))) 
 	{
