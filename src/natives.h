@@ -23,6 +23,9 @@
 
 namespace Native
 {
+	// CRC32
+	cell AMX_NATIVE_CALL crc32(AMX *amx, cell *params);
+	
 	// Hashing
 	cell AMX_NATIVE_CALL sha256(AMX *amx, cell *params);
 	cell AMX_NATIVE_CALL sha384(AMX *amx, cell *params);

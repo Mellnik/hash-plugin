@@ -26,6 +26,7 @@
 #include "cryptopp/pwdbased.h"
 #include "cryptopp/filters.h"
 #include "cryptopp/integer.h"
+#include "cryptopp/crc.h"
 
 #include "utility.h"
 
@@ -48,6 +49,17 @@ void Utility::hex_encode(string input, string &output)
 void Utility::hex_decode(string input, string &output)
 {
 	CryptoPP::StringSource(input, true, new CryptoPP::HexDecoder(new CryptoPP::StringSink(output)));
+}
+
+cell Utility::crc32(string input)
+{
+	CryptoPP::CRC32 crc32;
+	crc32.Update(reinterpret_cast<const byte*>(input.c_str()), input.length());
+
+	cell result;
+	crc32.Final(reinterpret_cast<byte*>(&result));
+
+	return result;
 }
 
 void Utility::sha256(string input, string &output)

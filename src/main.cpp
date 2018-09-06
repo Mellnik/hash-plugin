@@ -53,6 +53,9 @@ PLUGIN_EXPORT void PLUGIN_CALL ProcessTick()
 
 AMX_NATIVE_INFO hash_natives[] =
 {
+	// CRC32
+	{"crc32", Native::crc32},
+
 	// Hashing
 	{"sha256", Native::sha256},
 	{"sha384", Native::sha384},

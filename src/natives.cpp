@@ -200,6 +200,15 @@ cell AMX_NATIVE_CALL Native::slow_equals(AMX *amx, cell *params)
 	return static_cast<cell>(diff == 0);
 }
 
+cell AMX_NATIVE_CALL Native::crc32(AMX *amx, cell *params)
+{
+	PARAM_CHECK(1, "crc32");
+
+	char *str = NULL;
+	amx_StrParam(amx, params[1], str);
+	return Utility::crc32(str ? str : "");
+}
+
 cell AMX_NATIVE_CALL Native::sha256(AMX *amx, cell *params)
 {
 	PARAM_CHECK(3, "sha256");

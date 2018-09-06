@@ -33,6 +33,9 @@
 #define RIPEMD256_LENGTH 64
 #define RIPEMD320_LENGTH 80
 
+// CRC32
+native crc32(const key[]);
+
 // Hashing
 native sha256(const key[], hash[], len = sizeof(hash));
 native sha384(const key[], hash[], len = sizeof(hash)); 
