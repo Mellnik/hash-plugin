@@ -1,0 +1,23 @@
+{
+    "user": "Mellnik",
+    "repo": "hash-plugin",
+    "resources": [
+        {
+            "name": "^hash-plugin-(.*).rar$",
+            "platform": "linux",
+            "archive": true,
+            "includes": ["hash-plugin-(.*)"],
+            "plugins": ["hash-plugin-(.*)/hash.so"]
+        },
+        {
+            "name": "^hash-plugin-(.*).rar$",
+            "platform": "windows",
+            "archive": true,
+            "includes": ["hash-plugin-(.*)"],
+            "plugins": ["hash-plugin-(.*)/hash.dll"]
+        }
+    ],
+    "runtime": {
+        "plugins": ["Mellnik/hash-plugin"]
+    }
+}
