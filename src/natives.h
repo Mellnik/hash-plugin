@@ -47,6 +47,7 @@ namespace Native
 	cell AMX_NATIVE_CALL base64_decode(AMX *amx, cell *params);
 	cell AMX_NATIVE_CALL hex_encode(AMX *amx, cell *params);
 	cell AMX_NATIVE_CALL hex_decode(AMX *amx, cell *params);
+	cell AMX_NATIVE_CALL crc32(AMX *amx, cell *params);
 
 	// Pseudo random generators
 	cell AMX_NATIVE_CALL random_int(AMX *amx, cell *params);

@@ -77,6 +77,7 @@ AMX_NATIVE_INFO hash_natives[] =
 	{"base64_decode", Native::base64_decode},
 	{"hex_encode", Native::hex_encode},
 	{"hex_decode", Native::hex_decode},
+	{"crc32", Native::crc32},
 
 	// Pseudo random generators
 	{"random_int", Native::random_int},

@@ -18,6 +18,7 @@
 
 #include "cryptopp/base64.h"
 #include "cryptopp/hex.h"
+#include "cryptopp/crc.h"
 #include "cryptopp/sha.h"
 #include "cryptopp/sha3.h"
 #include "cryptopp/osrng.h"
@@ -48,6 +49,15 @@ void Utility::hex_encode(string input, string &output)
 void Utility::hex_decode(string input, string &output)
 {
 	CryptoPP::StringSource(input, true, new CryptoPP::HexDecoder(new CryptoPP::StringSink(output)));
+}
+
+cell Utility::crc32(string input)
+{
+	CryptoPP::CRC32 crc32;
+	crc32.Update(reinterpret_cast<const byte*>(input.c_str()), input.length());
+	cell result;
+	crc32.Final(reinterpret_cast<byte*>(&result));
+	return result;
 }
 
 void Utility::sha256(string input, string &output)

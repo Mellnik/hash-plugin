@@ -57,6 +57,7 @@ native base64_encode(const input[], output[], len = sizeof(output));
 native base64_decode(const input[], output[], len = sizeof(output));
 native hex_encode(const input[], output[], len = sizeof(output));
 native hex_decode(const input[], output[], len = sizeof(output));
+native crc32(const input[]);
 
 // Pseudo random generators
 native random_int(min, max);

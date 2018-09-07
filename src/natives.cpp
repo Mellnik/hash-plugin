@@ -356,6 +356,15 @@ cell AMX_NATIVE_CALL Native::hex_decode(AMX *amx, cell *params)
 	return 1;
 }
 
+cell AMX_NATIVE_CALL Native::crc32(AMX *amx, cell *params)
+{
+	PARAM_CHECK(1, "crc32");
+
+	char *str = NULL;
+	amx_StrParam(amx, params[1], str);
+	return Utility::crc32(str ? str : "");
+}
+
 cell AMX_NATIVE_CALL Native::random_int(AMX *amx, cell *params)
 {
 	PARAM_CHECK(2, "random_int");
