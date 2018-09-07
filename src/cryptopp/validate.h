@@ -57,6 +57,7 @@ bool ValidateTTMAC();
 bool ValidateCipherModes();
 bool ValidatePBKDF();
 bool ValidateHKDF();
+bool ValidateScrypt();
 
 bool ValidateDES();
 bool ValidateIDEA();
@@ -128,6 +129,8 @@ bool TestSecBlock();
 bool TestPolynomialMod2();
 // http://github.com/weidai11/cryptopp/issues/336
 bool TestIntegerBitops();
+// http://github.com/weidai11/cryptopp/issues/602
+bool TestIntegerOps();
 // http://github.com/weidai11/cryptopp/issues/360
 bool TestRounding();
 // http://github.com/weidai11/cryptopp/issues/242
@@ -189,7 +192,7 @@ private:
 };
 #endif
 
-// Safer functions on Windows for C&A, https://github.com/weidai11/cryptopp/issues/55
+// Safer functions on Windows for C&A, http://github.com/weidai11/cryptopp/issues/55
 inline std::string TimeToString(const time_t& t)
 {
 #if (CRYPTOPP_MSC_VERSION >= 1400)

@@ -58,8 +58,6 @@
 #include <iostream>
 #include <iomanip>
 
-#undef BLOCKING_RNG_AVAILABLE
-
 #include "validate.h"
 
 // Aggressive stack checking with VS2005 SP1 and above.
@@ -94,6 +92,8 @@ bool ValidateAll(bool thorough)
 #if defined(CRYPTOPP_EXTENDED_VALIDATION)
 	// http://github.com/weidai11/cryptopp/issues/92
 	pass=TestSecBlock() && pass;
+	// http://github.com/weidai11/cryptopp/issues/602
+	pass=TestIntegerOps() && pass;
 	// http://github.com/weidai11/cryptopp/issues/336
 	pass=TestIntegerBitops() && pass;
 	// http://github.com/weidai11/cryptopp/issues/64
@@ -146,6 +146,7 @@ bool ValidateAll(bool thorough)
 
 	pass=ValidatePBKDF() && pass;
 	pass=ValidateHKDF() && pass;
+	pass=ValidateScrypt() && pass;
 
 	pass=ValidateDES() && pass;
 	pass=ValidateCipherModes() && pass;

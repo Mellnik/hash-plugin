@@ -279,6 +279,7 @@
     <ClCompile Include="rw.cpp" />
     <ClCompile Include="safer.cpp" />
     <ClCompile Include="salsa.cpp" />
+    <ClCompile Include="scrypt.cpp" />
     <ClCompile Include="seal.cpp" />
     <ClCompile Include="seed.cpp" />
     <ClCompile Include="serpent.cpp" />
@@ -469,6 +470,7 @@
     <ClInclude Include="rw.h" />
     <ClInclude Include="safer.h" />
     <ClInclude Include="salsa.h" />
+    <ClInclude Include="scrypt.h" />
     <ClInclude Include="seal.h" />
     <ClInclude Include="secblock.h" />
     <ClInclude Include="seckey.h" />
