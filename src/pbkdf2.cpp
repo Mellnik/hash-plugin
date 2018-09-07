@@ -67,12 +67,12 @@ void Pbkdf2::Work()
 		RNG.GenerateBlock(byte_Salt, byte_Salt.size());
 		CryptoPP::ArraySource(byte_Salt, byte_Salt.size(), true, new CryptoPP::HexEncoder(new CryptoPP::StringSink(h_Salt)));
 
-		pbkdf2.DeriveKey(byte_Derived, byte_Derived.size(), 0x0, reinterpret_cast<const byte *>(h_Key.data()), h_Key.size(), reinterpret_cast<const byte *>(h_Salt.data()), h_Salt.size(), h_Iterations, 0);
+		pbkdf2.DeriveKey(byte_Derived, byte_Derived.size(), 0x0, reinterpret_cast<const CryptoPP::byte *>(h_Key.data()), h_Key.size(), reinterpret_cast<const CryptoPP::byte *>(h_Salt.data()), h_Salt.size(), h_Iterations, 0);
 		CryptoPP::ArraySource(byte_Derived, byte_Derived.size(), true, new CryptoPP::HexEncoder(new CryptoPP::StringSink(h_Hash)));
 	}
 	else if(h_Worker == PBKDF2_VALIDATE)
 	{
-		pbkdf2.DeriveKey(byte_Derived, byte_Derived.size(), 0x0, reinterpret_cast<const byte *>(h_Key.data()), h_Key.size(), reinterpret_cast<const byte *>(h_Salt.data()), h_Salt.size(), h_Iterations, 0);
+		pbkdf2.DeriveKey(byte_Derived, byte_Derived.size(), 0x0, reinterpret_cast<const CryptoPP::byte *>(h_Key.data()), h_Key.size(), reinterpret_cast<const CryptoPP::byte *>(h_Salt.data()), h_Salt.size(), h_Iterations, 0);
 
 		CryptoPP::SecByteBlock byte_Validate(_PBKDF2_BYTE_);
 		CryptoPP::StringSource(h_Hash, true, new CryptoPP::HexDecoder(new CryptoPP::ArraySink(byte_Validate, byte_Validate.size())));

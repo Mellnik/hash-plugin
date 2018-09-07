@@ -54,9 +54,9 @@ void Utility::hex_decode(string input, string &output)
 cell Utility::crc32(string input)
 {
 	CryptoPP::CRC32 crc32;
-	crc32.Update(reinterpret_cast<const byte*>(input.c_str()), input.length());
+	crc32.Update(reinterpret_cast<const CryptoPP::byte*>(input.c_str()), input.length());
 	cell result;
-	crc32.Final(reinterpret_cast<byte*>(&result));
+	crc32.Final(reinterpret_cast<CryptoPP::byte*>(&result));
 	return result;
 }
 
