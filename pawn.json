@@ -1,5 +1,5 @@
 {
-    "user": "rsetiawan7",
+    "user": "Mellnik",
     "repo": "hash-plugin",
     "resources": [
         {
@@ -14,6 +14,6 @@
         }
     ],
     "runtime": {
-        "plugins": ["rsetiawan7/hash-plugin"]
+        "plugins": ["Mellnik/hash-plugin"]
     }
 }
