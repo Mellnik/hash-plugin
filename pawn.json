@@ -3,18 +3,14 @@
     "repo": "hash-plugin",
     "resources": [
         {
-            "name": "^hash-plugin-(.*).rar$",
+            "name": "hash.so",
             "platform": "linux",
-            "archive": true,
-            "includes": ["hash-plugin-(.*)"],
-            "plugins": ["hash-plugin-(.*)/hash.so"]
+            "archive": false
         },
         {
-            "name": "^hash-plugin-(.*).rar$",
+            "name": "hash.dll",
             "platform": "windows",
-            "archive": true,
-            "includes": ["hash-plugin-(.*)"],
-            "plugins": ["hash-plugin-(.*)/hash.dll"]
+            "archive": false
         }
     ],
     "runtime": {
