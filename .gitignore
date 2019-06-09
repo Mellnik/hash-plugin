@@ -13,3 +13,8 @@ obj/
 *.lib
 *.pdb
 *.idb
+
+bin/
+lib/
+src/cryptopp/*.a
+src/cryptopp/*.o
