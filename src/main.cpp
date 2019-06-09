@@ -15,6 +15,7 @@
  */
 
 #include <cstdlib>
+#include <functional>
 
 #include "plugin.h"
 #include "callback.h"

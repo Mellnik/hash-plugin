@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#include <cstring>
+#include <functional>
 #include "callback.h"
 #include "plugin.h"
 
