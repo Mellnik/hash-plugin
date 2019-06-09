@@ -15,7 +15,7 @@ hash:
 	$(GPP) -m32 -O2 -fshort-wchar -shared -o $(OUTPUT) *.o $(LIBRARIES)
 	
 cryptolib:
-	$(MAKE) -C $(CRYPTOPP_SRC_DIR) static
+	CXXFLAGS="-DNDEBUG -m32 -g2 -O3 -fPIC" $(MAKE) -C $(CRYPTOPP_SRC_DIR) static
 	mkdir -p lib
 	cp $(CRYPTOPP_SRC_DIR)/libcryptopp.a ./lib
 	
